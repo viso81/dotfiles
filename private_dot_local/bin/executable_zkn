@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+"""znt - 创建一篇 zk 笔记（支持 问题笔记 / 指令 两种类型）
+
+依赖：需要 python >= 3.10（使用了 match/case 语法）
+"""
+import shutil
+import subprocess
+import sys
+
+lst_zk_cls = ["问题笔记", "指令"]
+
+
+def check_dependency(name: str) -> None:
+    if shutil.which(name) is None:
+        print(f"错误：找不到 {name}, 请先安装", file=sys.stderr)
+        sys.exit(1)
+
+
+def gum_choose(options: list[str], header: str) -> str | None:
+    """弹出选择菜单，取消或未选择时返回 None"""
+    result = subprocess.run(
+        ["gum", "choose", *options, "--header", header],
+        stdout=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        return None
+    choice = result.stdout.strip()
+    return choice or None
+
+
+def gum_input(placeholder: str) -> str | None:
+    """弹出单行输入框，取消或输入为空时返回 None"""
+    result = subprocess.run(
+        ["gum", "input", "--placeholder", placeholder],
+        stdout=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        return None
+    value = result.stdout.strip()
+    return value or None
+
+
+def main() -> int:
+    check_dependency("gum")
+    check_dependency("zk")
+
+    zk_cls = gum_choose(lst_zk_cls, "笔记类型")
+    if zk_cls is None:
+        print("未选择笔记类型，未创建笔记", file=sys.stderr)
+        return 1
+
+    title = gum_input("笔记标题")
+    if title is None:
+        print("标题为空，未创建笔记", file=sys.stderr)
+        return 1
+
+    cmd = ""
+
+    match zk_cls:
+        case "指令":
+            os_name = gum_input("适用系统 (如 linux / macos / windows)")
+            if os_name is None:
+                print("未填写系统，未创建笔记", file=sys.stderr)
+                return 1
+
+            shell_name = gum_input("适用 shell (如 bash / fish / zsh)")
+            if shell_name is None:
+                print("未填写 shell，未创建笔记", file=sys.stderr)
+                return 1
+
+            cmd = ["zk", "new", "commands", "-t", title]
+            cmd += ["--extra", f"os={os_name}", "--extra", f"shell={shell_name}"]
+
+        case "问题笔记":
+            cmd = ["zk", "new", "troubleshooting", "-t", title]
+
+        case _:
+            # 理论上不会走到这里，因为 zk_cls 一定来自 lst_zk_cls
+            print(f"未知笔记类型: {zk_cls}", file=sys.stderr)
+            return 1
+
+    zk_result = subprocess.run(cmd, check=False)
+    return zk_result.returncode
+
+
+if __name__ == "__main__":
+    sys.exit(main())

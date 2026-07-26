@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+COMMAND_BAT = "bat"
+
+# 需要不换行的源码扩展名
+SOURCE_EXTS = {
+    ".rs",
+    ".py",
+    ".js",
+    ".ts",
+    ".jsx",
+    ".tsx",
+    ".c",
+    ".cpp",
+    ".h",
+    ".hpp",
+    ".cc",
+    ".cxx",
+    ".go",
+    ".java",
+    ".kt",
+    ".swift",
+    ".rb",
+    ".php",
+    ".scala",
+    ".hs",
+    ".ml",
+    ".fs",
+    ".cs",
+    ".vue",
+    ".svelte",
+    ".zig",
+    ".nim",
+    ".lua",
+    ".sh",
+    ".bash",
+    ".zsh",
+    ".fish",
+    ".toml",
+    ".yaml",
+    ".yml",
+    ".json",
+    ".xml",
+    ".html",
+    ".css",
+    ".scss",
+    ".sass",
+    ".less",
+    ".kdl",
+}
+
+
+def is_source(path: str) -> bool:
+    return Path(path).suffix.lower() in SOURCE_EXTS
+
+
+def main():
+    if shutil.which(COMMAND_BAT) is None:
+        print(f"错误：找不到{COMMAND_BAT}，请先安装", file = sys.stderr)
+        sys.exit(1)
+        
+    
+    args = sys.argv[1:]
+
+    # 找出命令行中真正的文件参数（简单处理）
+    files = [a for a in args if not a.startswith("-") and Path(a).exists()]
+
+    # 只要有一个是源码文件，就整体不换行
+    use_never = any(is_source(f) for f in files)
+
+    cmd = ["bat"]
+    if use_never:
+        cmd.append("--wrap=never")
+    cmd.extend(args)
+
+    try:
+        return subprocess.call(cmd)
+    except KeyboardInterrupt:
+        return 130 # 约定成俗的Ctrl-C退出码
+
+if __name__ == "__main__":
+    sys.exit(main())
