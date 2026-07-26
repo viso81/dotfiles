@@ -6,8 +6,15 @@
 import shutil
 import subprocess
 import sys
+from enum import StrEnum
 
-lst_zk_cls = ["问题笔记", "指令"]
+ZK_CLS = ["问题笔记", "指令"]
+OS = ["linux", "windows"]
+SHELL = ["fish", "powershell", "bash", "zsh"]
+
+class NoteClass(StrEnum):
+    COMMAND = "commands"
+    TROUB = "troubleshooting"
 
 
 def check_dependency(name: str) -> None:
@@ -48,7 +55,7 @@ def main() -> int:
     check_dependency("gum")
     check_dependency("zk")
 
-    zk_cls = gum_choose(lst_zk_cls, "笔记类型")
+    zk_cls = gum_choose(ZK_CLS, "笔记类型")
     if zk_cls is None:
         print("未选择笔记类型，未创建笔记", file=sys.stderr)
         return 1
@@ -58,25 +65,20 @@ def main() -> int:
         print("标题为空，未创建笔记", file=sys.stderr)
         return 1
 
-    cmd = ""
 
+    cmd = []
     match zk_cls:
         case "指令":
-            os_name = gum_input("适用系统 (如 linux / macos / windows)")
+            os_name = gum_choose(OS, "选择系统")
             if os_name is None:
-                print("未填写系统，未创建笔记", file=sys.stderr)
+                print("选择系统错误,未创建笔记", file = sys.stderr)
                 return 1
-
-            shell_name = gum_input("适用 shell (如 bash / fish / zsh)")
-            if shell_name is None:
-                print("未填写 shell，未创建笔记", file=sys.stderr)
-                return 1
-
-            cmd = ["zk", "new", "commands", "-t", title]
-            cmd += ["--extra", f"os={os_name}", "--extra", f"shell={shell_name}"]
+                        
+            cmd = ["zk", "new", NoteClass.COMMAND, "-t", title]
+            cmd += ["--extra", f"os={os_name}"]
 
         case "问题笔记":
-            cmd = ["zk", "new", "troubleshooting", "-t", title]
+            cmd = ["zk", "new", NoteClass.TROUB, "-t", title]
 
         case _:
             # 理论上不会走到这里，因为 zk_cls 一定来自 lst_zk_cls
