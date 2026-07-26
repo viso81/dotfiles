@@ -9,6 +9,7 @@ if status is-interactive
 
     alias bat="bat-smart"
     alias hx="helix"
+    alias hxc="chezmoi edit"
 end
 
 # 配置zk
