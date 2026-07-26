@@ -1,0 +1,9 @@
+[http]
+	proxy = socks5://127.0.0.1:7890
+[https]
+	proxy = socks5://127.0.0.1:7890
+[user]
+	email = z_fun@live.cn
+	name = viso81
+[alias]
+	up = !git add -A && git commit -m \"update $(date +%Y-%m-%d)\" && git push
