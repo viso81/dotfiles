@@ -1,0 +1,58 @@
+[env]
+TERM = "xterm-256color"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"
+
+# 正常文本颜色
+[colors.normal]
+black = "#000000"
+red = "#ff5555"
+green = "#50fa7b"
+yellow = "#f1fa8c"
+blue = "#bd93f9"
+magenta = "#ff79c6"
+cyan = "#8be9fd"
+white = "#f8f8f2"
+
+# 高亮文本颜色
+[colors.bright]
+black = "#444444"
+red = "#ff6e6e"
+green = "#69ff94"
+yellow = "#ffffa6"
+blue = "#d6acff"
+magenta = "#ff92df"
+cyan = "#a4ffff"
+white = "#ffffff"
+
+[window]
+opacity = 0.8
+
+[window.padding]
+x = 12
+y = 8
+
+[font]
+size = 12
+
+[font.normal]
+family = "JetBrains Mono Nerd Font"
+style = "Medium"
+
+[font.bold]
+family = "JetBrains Mono Nerd Font"
+style = "Heavy"
+
+[font.bold_italic]
+family = "JetBrains Mono Nerd Font"
+style = "Heavy Italic"
+
+[font.italic]
+family = "JetBrains Mono Nerd Font"
+style = "Medium Italic"
+
+[selection]
+# 选择及复制
+save_to_clipboard = true

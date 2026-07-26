@@ -1,0 +1,11 @@
+[[language]]
+name = "markdown"
+language-servers = ["zk"]
+
+[language-server.zk]
+command = "zk"
+args = ["lsp"]
+
+[[language]]
+name = "python"
+language-servers = ["pyright", "ruff"]

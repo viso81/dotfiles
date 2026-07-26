@@ -1,0 +1,29 @@
+# theme = "dracula"
+theme = "dark_transparent"
+
+[editor]
+# line-number = "relative" # 相对行号
+mouse = true
+bufferline = "multiple"
+color-modes = true
+cursorline = true
+
+# [editor.cursor-shape]
+# insert = "bar"
+# normal = "block"
+# select = "underline"
+
+# [editor.indent-guides]
+# render = true
+
+# [editor.whitespace.render]
+# space = "none"
+# tab = "all"
+
+# [editor.statusline]
+# left = ["mode", "spinner", "file-name"]
+# center = []
+# right = ["diagnostics", "selections", "position", "file-encoding"]
+
+[keys.insert]
+esc = ["normal_mode", ":sh fcitx5-remote -c"] # 退出插入模式后关闭输入法

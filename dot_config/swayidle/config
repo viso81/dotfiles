@@ -1,0 +1,8 @@
+timeout 300 'qs -c noctalia-shell ipc call lockScreen lock'   # 5分钟无操作自动锁屏
+timeout 600 'qs -c noctalia-shell ipc call sessionMenu lockAndSuspend'  # 10分钟后锁屏+休眠（可选）
+
+# 睡眠前强制锁屏
+before-sleep 'qs -c noctalia-shell ipc call lockScreen lock'
+
+# 锁定后关闭屏幕
+lock 'qs -c noctalia-shell ipc call lockScreen lock'
