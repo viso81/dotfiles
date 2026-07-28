@@ -1,0 +1,17 @@
+set realname = "你的名字"
+set imap_user = "z_fun@live.cn"
+set from = ${imap_user}
+
+set folder = "imap://outlook.office365.com/"
+set spoolfile = "+INBOX"
+set imap_authenticators = "oauthbearer:xoauth2"
+set imap_oauth_refresh_command = "~/.config/neomutt/mutt_oauth2.py ~/.config/neomutt/live.tokens --provider microsoft"
+
+set smtp_url = "smtp://${imap_user}@smtp.office365.com:587/"
+set smtp_authenticators = ${imap_authenticators}
+set smtp_oauth_refresh_command = ${imap_oauth_refresh_command}
+
+set ssl_starttls = yes
+set ssl_force_tls = yes
+set editor = "nvim"
+set sort = "reverse-date"

@@ -3,13 +3,16 @@ if status is-interactive
 
     starship init fish | source
 
-    alias ll 'eza -l --icons'
-    alias ls 'eza --icons'
-    alias lt 'eza --tree --level=2 --icons'
+    alias ll 'eza -l --icons=auto'
+    alias ls 'eza --icons=auto'
+    alias lt 'eza --tree --level=2 --icons=auto'
 
     alias bat="bat-smart"
     alias hx="helix"
-    alias hxc="EDITOR=helix chezmoi edit"
+    # alias hxc="EDITOR=helix chezmoi edit"
+    function hxc --wraps='chezmoi edit' --description 'alias hxc=EDITOR=helix chezmoi edit'
+        EDITOR=helix chezmoi edit $argv
+    end
 end
 
 # 配置zk

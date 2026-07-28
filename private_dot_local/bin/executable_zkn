@@ -3,6 +3,7 @@
 
 依赖：需要 python >= 3.10（使用了 match/case 语法）
 """
+
 import shutil
 import subprocess
 import sys
@@ -11,6 +12,7 @@ from enum import StrEnum
 ZK_CLS = ["问题笔记", "指令"]
 OS = ["linux", "windows"]
 SHELL = ["fish", "powershell", "bash", "zsh"]
+
 
 class NoteClass(StrEnum):
     COMMAND = "commands"
@@ -37,6 +39,23 @@ def gum_choose(options: list[str], header: str) -> str | None:
     return choice or None
 
 
+def gum_choose_multi(options: list[str], header: str) -> str | None:
+    result = subprocess.run(
+        ["gum", "choose", "--no-limit", "--header", header, *options],
+        # capture_output=True, # 用这个会卡在控制台没有任何输入输出
+        stdout=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+
+    if result.returncode != 0:
+        return None
+    
+    lines = result.stdout.splitlines()
+    selected = "+".join(filter(None, (line.strip() for line in lines)))
+    return selected or None
+
+
 def gum_input(placeholder: str) -> str | None:
     """弹出单行输入框，取消或输入为空时返回 None"""
     result = subprocess.run(
@@ -55,8 +74,8 @@ def main() -> int:
     check_dependency("gum")
     check_dependency("zk")
 
-    zk_cls = gum_choose(ZK_CLS, "笔记类型")
-    if zk_cls is None:
+    select_class = gum_choose(ZK_CLS, "笔记类型")
+    if select_class is None:
         print("未选择笔记类型，未创建笔记", file=sys.stderr)
         return 1
 
@@ -65,15 +84,15 @@ def main() -> int:
         print("标题为空，未创建笔记", file=sys.stderr)
         return 1
 
-
     cmd = []
-    match zk_cls:
+    match select_class:
         case "指令":
-            os_name = gum_choose(OS, "选择系统")
+            # os_name = gum_choose(OS, "选择系统")
+            os_name = gum_choose_multi(OS, "选择系统")
             if os_name is None:
-                print("选择系统错误,未创建笔记", file = sys.stderr)
+                print("选择系统错误,未创建笔记", file=sys.stderr)
                 return 1
-                        
+
             cmd = ["zk", "new", NoteClass.COMMAND, "-t", title]
             cmd += ["--extra", f"os={os_name}"]
 
@@ -82,7 +101,7 @@ def main() -> int:
 
         case _:
             # 理论上不会走到这里，因为 zk_cls 一定来自 lst_zk_cls
-            print(f"未知笔记类型: {zk_cls}", file=sys.stderr)
+            print(f"未知笔记类型: {select_class}", file=sys.stderr)
             return 1
 
     zk_result = subprocess.run(cmd, check=False)

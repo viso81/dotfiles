@@ -1,0 +1,16 @@
+set realname = "viso"
+set imap_user = "945699@qq.com"
+set from = ${imap_user}
+set imap_pass = "`~/.config/neomutt/get-qq-pass.fish`"
+set smtp_pass = ${imap_pass}
+
+set folder = "imaps://imap.qq.com:993/"
+set spoolfile = "+INBOX"
+
+set smtp_url = "smtp://${imap_user}@smtp.qq.com:465/"
+
+set ssl_starttls = no
+set ssl_force_tls = yes
+
+set editor = "nvim"
+set sort = "reverse-date"

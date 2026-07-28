@@ -6,5 +6,5 @@ function zv
     set file (string split -f2 \t "$selection")
     #   pandoc "$file" -s --css=$HOME/.config/pandoc-css/themes/nerd-theme/everforest.css --embed-resources --standalone -o /tmp/zk-preview.html --mathjax
     #   xdg-open /tmp/zk-preview.html
-    glow -s pink -p "$file"
+    glow -s dark -p "$file"
 end
