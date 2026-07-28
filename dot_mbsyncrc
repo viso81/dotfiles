@@ -1,0 +1,53 @@
+
+# live.cn
+IMAPAccount live
+Host 127.0.0.1
+Port 1993
+User z_fun@live.cn
+Pass "dummy123"
+AuthMechs LOGIN
+TLSType None
+Timeout 300
+# PassCmd "~/.config/neomutt/mutt_oauth2.py ~/.config/neomutt/live.tokens --provider microsoft"
+# AuthMechs XOAUTH2
+# SSLType IMAPS
+
+IMAPStore live-remote
+Account live
+
+MaildirStore live-local
+Path ~/Maildir/live/
+Inbox ~/Maildir/live/INBOX
+SubFolders Verbatim
+
+Channel live
+Far :live-remote:
+Near :live-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *
+
+# QQ邮箱
+IMAPAccount qq
+Host imap.qq.com
+User 945699@qq.com
+PassCmd "~/.config/neomutt/get-qq-pass.fish"
+AuthMechs LOGIN
+SSLType IMAPS
+
+IMAPStore qq-remote
+Account qq
+
+MaildirStore qq-local
+Path ~/Maildir/qq/
+Inbox ~/Maildir/qq/INBOX
+SubFolders Verbatim
+
+Channel qq
+Far :qq-remote:
+Near :qq-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *

@@ -4,7 +4,7 @@ set from = ${imap_user}
 set imap_pass = "`~/.config/neomutt/get-qq-pass.fish`"
 set smtp_pass = ${imap_pass}
 
-set folder = "imaps://imap.qq.com:993/"
+set folder = "~/Maildir/qq"
 set spoolfile = "+INBOX"
 
 set smtp_url = "smtp://${imap_user}@smtp.qq.com:465/"

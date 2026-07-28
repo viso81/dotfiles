@@ -1,0 +1,10 @@
+[Unit]
+Description=Email OAuth2 Proxy for live.cn
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/viso/.config/email-oauth2-proxy/emailproxy.py --no-gui --config-file /home/viso/.config/email-oauth2-proxy/emailproxy.config
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
