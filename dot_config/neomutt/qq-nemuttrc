@@ -1,7 +1,7 @@
 set realname = "viso"
 set imap_user = "945699@qq.com"
 set from = ${imap_user}
-set imap_pass = "`~/.config/neomutt/get-qq-pass.fish`"
+set imap_pass = "`cat ~/.config/neomutt/qq-authcode`"
 set smtp_pass = ${imap_pass}
 
 set folder = "~/Maildir/qq"

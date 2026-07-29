@@ -32,7 +32,8 @@ SyncState *
 IMAPAccount qq
 Host imap.qq.com
 User 945699@qq.com
-PassCmd "~/.config/neomutt/get-qq-pass.fish"
+PassCmd "cat ~/.config/neomutt/qq-authcode"
+# PassCmd "~/.config/neomutt/get-qq-pass.fish"
 AuthMechs LOGIN
 SSLType IMAPS
 
