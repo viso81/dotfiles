@@ -6,4 +6,4 @@
 	email = z_fun@live.cn
 	name = viso81
 [alias]
-	up = !git add -A && git commit -m \"update $(date +%Y-%m-%d)\" && git push
+	up = !git add -A && git commit -m \"update $(date +%Y-%m-%d)\" && git pull --no-rebase && git push
