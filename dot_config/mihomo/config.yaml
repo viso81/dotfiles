@@ -94,7 +94,13 @@ rule-providers:
     interval: 86400
 
 rules:
-# - PROCESS-NAME,lyrebird.exe,mieru
+# --- Arch / AUR / Git 相关 ---
+  - DOMAIN-SUFFIX,archlinux.org,hysteria2
+  - DOMAIN-SUFFIX,github.com,hysteria2
+  - DOMAIN-SUFFIX,githubusercontent.com,hysteria2
+  - DOMAIN-SUFFIX,githubassets.com,hysteria2
+  - DOMAIN-SUFFIX,github.io,hysteria2
+
   - DOMAIN-SUFFIX,pixiv.net,mieru # pixiv 只用mieru
   - DOMAIN-SUFFIX,pximg.net,mieru # pixiv
 # - PROCESS-NAME,Code.exe,🚀 节点选择
