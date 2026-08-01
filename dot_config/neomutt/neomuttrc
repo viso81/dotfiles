@@ -1,3 +1,11 @@
+# 按 T 翻译当前邮件正文（英文 → 中文，简洁输出）
+macro pager T "<pipe-message>trans -b -t zh\n" "翻译邮件正文"
+# 按 Ctrl-T 翻译并显示详细结果
+macro pager \CT "<pipe-message>trans -t zh\n" "详细翻译"
+
+# 设置列表时间格式
+set index_format = '%4C %Z %<[y?%<[m?%<[d?%[%H:%M]&%[%m/%d]>&%[%m/%d]>&%[%Y-%m-%d]> %-15.15L (%<l?%4l&%4c>) %s'
+
 set realname = "你的名字"
 set imap_user = "z_fun@live.cn"
 set from = ${imap_user}

@@ -10,6 +10,9 @@ if status is-interactive
     alias bat="bat-smart"
     alias hx="helix"
 
+    function neomutt
+        env LANG=zh_CN.utf8 neomutt $argv
+    end
     alias mail-live="neomutt -F ~/.config/neomutt/neomuttrc"
     alias mail-qq="neomutt -F ~/.config/neomutt/qq-nemuttrc"
     # alias hxc="EDITOR=helix chezmoi edit"
