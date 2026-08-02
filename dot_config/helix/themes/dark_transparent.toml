@@ -37,6 +37,7 @@
 "ui.text.focus" = { fg = "#ffffff", modifiers = ["bold"] }
 "ui.cursor" = { fg = "#1a1b26", bg = "#c0caf5" }
 "ui.cursor.primary" = { fg = "#1a1b26", bg = "#bb9af7" }
+"ui.cursor.match" = { fg = "#1a1b26", bg = "#e0af68", modifiers = ["bold"] } # 匹配括号高亮
 "ui.cursorline" = { bg = "#1f2335" }               # 光标所在行，浅色微透明感
 "ui.selection" = { bg = "#283457" }
 "ui.linenr" = { fg = "#3b4261" }
