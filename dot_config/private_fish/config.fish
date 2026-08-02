@@ -10,11 +10,15 @@ if status is-interactive
     alias bat="bat-smart"
     alias hx="helix"
 
+    alias t="trans -b :zh"
+    alias te="trans -b :en"
+
     function neomutt
         env LANG=zh_CN.utf8 neomutt $argv
     end
     alias mail-live="neomutt -F ~/.config/neomutt/neomuttrc"
     alias mail-qq="neomutt -F ~/.config/neomutt/qq-nemuttrc"
+
     # alias hxc="EDITOR=helix chezmoi edit"
     function hxc --wraps='chezmoi edit' --description 'alias hxc=EDITOR=helix chezmoi edit'
         EDITOR=helix chezmoi edit $argv

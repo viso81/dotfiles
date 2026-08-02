@@ -95,11 +95,11 @@ rule-providers:
 
 rules:
 # --- Arch / AUR / Git 相关 ---
-  - DOMAIN-SUFFIX,archlinux.org,hysteria2
-  - DOMAIN-SUFFIX,github.com,hysteria2
-  - DOMAIN-SUFFIX,githubusercontent.com,hysteria2
-  - DOMAIN-SUFFIX,githubassets.com,hysteria2
-  - DOMAIN-SUFFIX,github.io,hysteria2
+  - DOMAIN-SUFFIX,archlinux.org,🚀 节点选择
+  - DOMAIN-SUFFIX,github.com,🚀 节点选择
+  - DOMAIN-SUFFIX,githubusercontent.com,🚀 节点选择
+  - DOMAIN-SUFFIX,githubassets.com,🚀 节点选择
+  - DOMAIN-SUFFIX,github.io,🚀 节点选择
 
   - DOMAIN-SUFFIX,pixiv.net,mieru # pixiv 只用mieru
   - DOMAIN-SUFFIX,pximg.net,mieru # pixiv
