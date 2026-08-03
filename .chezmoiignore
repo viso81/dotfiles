@@ -1,1 +1,19 @@
 private_dot_config/email-oauth2-proxy/emailproxy.config
+
+{{- if eq .chezmoi.os "windows" }}
+{{/* windows 忽略列表 */}}
+.config/alacritty
+.config/fish
+.config/neomutt
+.config/niri
+.config/swayidle
+.config/systemd
+.config/vicinae
+.config/yay
+{{- else if eq .chezmoi.os "linux" }}
+{{/* linux 忽略列表  */}}
+
+{{- else if eq .chezmoi.os "darwin" }}
+{{/* macOS 忽略列表  */}}
+
+{{- end }}
