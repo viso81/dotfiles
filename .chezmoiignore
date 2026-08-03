@@ -2,6 +2,7 @@ private_dot_config/email-oauth2-proxy/emailproxy.config
 
 {{- if eq .chezmoi.os "windows" }}
 {{/* windows 忽略列表 */}}
+.mbsyncrc
 .config/alacritty
 .config/fish
 .config/neomutt
@@ -10,10 +11,17 @@ private_dot_config/email-oauth2-proxy/emailproxy.config
 .config/systemd
 .config/vicinae
 .config/yay
+.config/mihomo
+.config/helix
+.config
+.local
+.local/bin
 {{- else if eq .chezmoi.os "linux" }}
 {{/* linux 忽略列表  */}}
-
+AppData
+Documents
 {{- else if eq .chezmoi.os "darwin" }}
 {{/* macOS 忽略列表  */}}
-
+AppData
+Documents
 {{- end }}

@@ -1,0 +1,124 @@
+# ============================================================
+# Dark Transparent Theme for Helix
+# 整体背景透明(需终端本身支持透明/背景图),
+# 但状态栏(statusline)保持不透明实色，保证可读性。
+#
+# 使用方法：
+#   1. 将本文件放到 ~/.config/helix/themes/dark_transparent.toml
+#   2. 在 ~/.config/helix/config.toml 中设置：
+#        theme = "dark_transparent"
+#   3. 终端需要开启背景透明（如 alacritty/kitty/wezterm 的
+#      opacity 或 background-opacity 设置），Helix 本身只是
+#      不绘制背景色，真正的透明效果依赖终端。
+# ============================================================
+
+# ---------- 基础色板（可按喜好调整）----------
+# 这里用变量只是注释说明，Helix TOML 不支持变量，
+# 直接在下面各处手写颜色值。
+#
+# 背景（状态栏用）      : #1a1b26
+# 前景/主文字           : #c0caf5
+# 次要文字/注释         : #565f89
+# 强调色（关键字）      : #bb9af7
+# 字符串                : #9ece6a
+# 数字/常量             : #ff9e64
+# 函数名                : #7aa2f7
+# 类型                  : #2ac3de
+# 警告                  : #e0af68
+# 错误                  : #f7768e
+# 选区高亮              : #283457
+# 光标行高亮            : #1f2335
+
+# ============================================================
+# 编辑区域 —— 透明
+# ============================================================
+"ui.background" = { fg = "#c0caf5" }               # 不写 bg，实现透明
+"ui.text" = { fg = "#c0caf5" }
+"ui.text.focus" = { fg = "#ffffff", modifiers = ["bold"] }
+"ui.cursor" = { fg = "#1a1b26", bg = "#c0caf5" }
+"ui.cursor.primary" = { fg = "#1a1b26", bg = "#bb9af7" }
+"ui.cursor.match" = { fg = "#1a1b26", bg = "#e0af68", modifiers = ["bold"] } # 匹配括号高亮
+"ui.cursorline" = { bg = "#1f2335" }               # 光标所在行，浅色微透明感
+"ui.selection" = { bg = "#283457" }
+"ui.linenr" = { fg = "#3b4261" }
+"ui.linenr.selected" = { fg = "#bb9af7", modifiers = ["bold"] }
+"ui.gutter" = { fg = "#3b4261" }                   # 不写 bg，透明
+"ui.virtual.whitespace" = { fg = "#3b4261" }
+"ui.virtual.indent-guide" = { fg = "#292e42" }
+"ui.virtual.ruler" = { bg = "#1f2335" }
+
+# ============================================================
+# 弹出菜单 / 补全 —— 半不透明，保证可读
+# ============================================================
+"ui.popup" = { fg = "#c0caf5", bg = "#1a1b26" }
+"ui.popup.info" = { fg = "#c0caf5", bg = "#1a1b26" }
+"ui.window" = { fg = "#3b4261" }
+"ui.menu" = { fg = "#c0caf5", bg = "#1a1b26" }
+"ui.menu.selected" = { fg = "#1a1b26", bg = "#7aa2f7" }
+"ui.help" = { fg = "#c0caf5", bg = "#1a1b26" }
+
+# ============================================================
+# 状态栏 —— 完整不透明（重点：你要求的部分）
+# ============================================================
+"ui.statusline" = { fg = "#c0caf5", bg = "#1a1b26" }
+"ui.statusline.inactive" = { fg = "#565f89", bg = "#1a1b26" }
+"ui.statusline.normal" = { fg = "#1a1b26", bg = "#7aa2f7", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "#1a1b26", bg = "#9ece6a", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "#1a1b26", bg = "#bb9af7", modifiers = ["bold"] }
+"ui.statusline.separator" = { fg = "#3b4261", bg = "#1a1b26" }
+
+# ============================================================
+# 底部命令行 / 消息提示
+# ============================================================
+"ui.bufferline" = { fg = "#565f89", bg = "#1a1b26" }
+"ui.bufferline.active" = { fg = "#c0caf5", bg = "#1a1b26", modifiers = ["bold"] }
+"ui.bufferline.background" = { bg = "#1a1b26" }
+
+"warning" = "#e0af68"
+"error" = "#f7768e"
+"info" = "#7aa2f7"
+"hint" = "#565f89"
+
+"diagnostic.warning" = { underline = { color = "#e0af68", style = "curl" } }
+"diagnostic.error" = { underline = { color = "#f7768e", style = "curl" } }
+"diagnostic.info" = { underline = { color = "#7aa2f7", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "#565f89", style = "curl" } }
+
+# ============================================================
+# 语法高亮
+# ============================================================
+"comment" = { fg = "#565f89", modifiers = ["italic"] }
+"keyword" = { fg = "#bb9af7" }
+"keyword.control" = { fg = "#bb9af7", modifiers = ["bold"] }
+"keyword.operator" = { fg = "#89ddff" }
+"operator" = { fg = "#89ddff" }
+"function" = { fg = "#7aa2f7" }
+"function.macro" = { fg = "#7dcfff" }
+"variable" = { fg = "#c0caf5" }
+"variable.parameter" = { fg = "#e0af68" }
+"variable.builtin" = { fg = "#f7768e" }
+"variable.other.member" = { fg = "#73daca" }
+"constant" = { fg = "#ff9e64" }
+"constant.numeric" = { fg = "#ff9e64" }
+"constant.character.escape" = { fg = "#89ddff" }
+"string" = { fg = "#9ece6a" }
+"string.special" = { fg = "#b4f9f8" }
+"type" = { fg = "#2ac3de" }
+"type.builtin" = { fg = "#2ac3de" }
+"attribute" = { fg = "#e0af68" }
+"namespace" = { fg = "#7aa2f7" }
+"punctuation" = { fg = "#89ddff" }
+"punctuation.bracket" = { fg = "#89ddff" }
+"punctuation.delimiter" = { fg = "#89ddff" }
+"label" = { fg = "#7aa2f7" }
+"tag" = { fg = "#f7768e" }
+"markup.heading" = { fg = "#7aa2f7", modifiers = ["bold"] }
+"markup.list" = { fg = "#bb9af7" }
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.link.url" = { fg = "#73daca", modifiers = ["underlined"] }
+"markup.link.text" = { fg = "#7aa2f7" }
+"markup.raw" = { fg = "#9ece6a" }
+"diff.plus" = { fg = "#9ece6a" }
+"diff.minus" = { fg = "#f7768e" }
+"diff.delta" = { fg = "#e0af68" }
