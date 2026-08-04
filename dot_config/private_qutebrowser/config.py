@@ -20,7 +20,8 @@ config.bind('/', 'set-cmd-text / ;; spawn fcitx5-remote -c', mode='normal')
 config.bind('?', 'set-cmd-text ? ;; spawn fcitx5-remote -c', mode='normal')
 config.bind('<Ctrl-Return>', 'command-accept -t ;; spawn fcitx5-remote -c', mode='command')
 config.bind('<Return>', 'command-accept ;; spawn fcitx5-remote -c', mode='command')
-
+# 让焦点离开输入框
+config.bind('<Escape>', 'mode-leave ;; jseval -q if (document.activeElement) document.activeElement.blur() ;; spawn fcitx5-remote -c', mode='insert')
 # 字体大小
 c.fonts.default_size = "16pt"
 # 默认语言修改为中文
