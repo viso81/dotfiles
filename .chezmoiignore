@@ -18,6 +18,7 @@ private_dot_config/email-oauth2-proxy/emailproxy.config
 .local/bin
 {{- else if eq .chezmoi.os "linux" }}
 {{/* linux 忽略列表  */}}
+.chezmoiscripts/windows/**
 AppData
 Documents
 {{- else if eq .chezmoi.os "darwin" }}
