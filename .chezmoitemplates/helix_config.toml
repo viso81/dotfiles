@@ -27,7 +27,17 @@ cursorline = true
 
 [keys.insert]
 {{- if eq .chezmoi.os "windows" }}
-esc = "normal_mode"
-{{- else}}
+# esc = "normal_mode"
+# 退出插入模式关闭输入法,必须有im-select.exe
+esc = ["normal_mode", ':pipe-to cmd /c im-select.exe 1033']
+{{- else }}
 esc = ["normal_mode", ":sh fcitx5-remote -c"] # 退出插入模式后关闭输入法
-{{- end}}
+{{- end }}
+
+[keys.normal]
+# 保险在normal模式下按esc也退出输入法
+{{- if eq .chezmoi.os "windows" }}
+esc = ["normal_mode", ':pipe-to cmd/c im-select.exe 1033']
+{{- else }}
+esc = ["normal_mode", ':sh fcitx5-remote -c']
+{{- end }}
