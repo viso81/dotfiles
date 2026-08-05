@@ -27,9 +27,9 @@ cursorline = true
 
 [keys.insert]
 {{- if eq .chezmoi.os "windows" }}
-# esc = "normal_mode"
-# 退出插入模式关闭输入法,必须有im-select.exe
-esc = ["normal_mode", ':pipe-to cmd /c im-select.exe 1033']
+# 退出插入模式关闭输入法,必须有im-switch-for-windows
+# https://github.com/fengwk/im-switch-for-windows
+esc = ["normal_mode", ':pipe-to cmd /c im-switch-x64.exe en']
 {{- else }}
 esc = ["normal_mode", ":sh fcitx5-remote -c"] # 退出插入模式后关闭输入法
 {{- end }}
@@ -37,7 +37,7 @@ esc = ["normal_mode", ":sh fcitx5-remote -c"] # 退出插入模式后关闭输�
 [keys.normal]
 # 保险在normal模式下按esc也退出输入法
 {{- if eq .chezmoi.os "windows" }}
-esc = ["normal_mode", ':pipe-to cmd/c im-select.exe 1033']
+esc = ["normal_mode", ':pipe-to cmd /c im-switch-x64.exe en']
 {{- else }}
 esc = ["normal_mode", ':sh fcitx5-remote -c']
 {{- end }}
