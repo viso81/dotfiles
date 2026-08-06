@@ -37,8 +37,9 @@ esc = ["normal_mode", ":sh fcitx5-remote -c"] # 退出插入模式后关闭输�
 [keys.normal]
 # 保险在normal模式下按esc也退出输入法
 {{- if eq .chezmoi.os "windows" }}
-esc = ["normal_mode", ':pipe-to cmd /c im-switch-x64.exe en']
+# esc = ["normal_mode", ':pipe-to cmd /c im-switch-x64.exe en']
+esc = ["normal_mode"]
 {{- else }}
 esc = ["normal_mode", ':sh fcitx5-remote -c']
-# ":" = [':sh fcitx5-remote -c', ":"]
+":" = ["command_mode", ':sh fcitx5-remote -c']
 {{- end }}
