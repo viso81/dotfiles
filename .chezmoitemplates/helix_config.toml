@@ -40,4 +40,5 @@ esc = ["normal_mode", ":sh fcitx5-remote -c"] # 退出插入模式后关闭输�
 esc = ["normal_mode", ':pipe-to cmd /c im-switch-x64.exe en']
 {{- else }}
 esc = ["normal_mode", ':sh fcitx5-remote -c']
+# ":" = [':sh fcitx5-remote -c', ":"]
 {{- end }}
